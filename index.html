@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Justice & Co. | Legal Consultant in Dhaka</title>
+    <!-- Google Fonts: Merriweather (Serif/Authority) & Open Sans (Readability) -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- VARIABLES --- */
+        :root {
+            --primary: #0f172a;      /* Navy Blue (Legal Trust) */
+            --accent: #c5a059;       /* Gold (Justice/Scale) */
+            --light: #f8fafc;        /* Off-White Paper Color */
+            --text-dark: #334155;
+            --text-light: #64748b;
+            --font-serif: 'Merriweather', serif;
+            --font-sans: 'Open Sans', sans-serif;
+            --border: 1px solid #e2e8f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-dark);
+            background-color: var(--light);
+            line-height: 1.8; /* Higher line-height for huge text */
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3, h4 { font-family: var(--font-serif); color: var(--primary); line-height: 1.3; }
+        
+        .section-header { text-align: center; margin-bottom: 60px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .section-header span {
+            color: var(--accent); font-family: var(--font-sans); text-transform: uppercase;
+            font-size: 0.85rem; letter-spacing: 3px; font-weight: 700; display: block; margin-bottom: 15px;
+        }
+        .section-header h2 { font-size: 2.5rem; }
+        .divider { width: 80px; height: 3px; background: var(--primary); margin: 20px auto; }
+
+        /* --- UTILITIES --- */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .section-padding { padding: 100px 0; }
+        
+        .btn {
+            display: inline-block; padding: 15px 35px; border-radius: 2px;
+            font-family: var(--font-sans); font-weight: 600; text-transform: uppercase;
+            letter-spacing: 1px; font-size: 0.9rem; cursor: pointer; transition: 0.3s;
+        }
+        .btn-primary { background-color: var(--primary); color: #fff; border: 2px solid var(--primary); }
+        .btn-primary:hover { background-color: var(--accent); border-color: var(--accent); color: #000; }
+        .btn-outline { background: transparent; border: 2px solid #fff; color: #fff; }
+        .btn-outline:hover { background: #fff; color: var(--primary); }
+
+        /* --- HEADER --- */
+        header {
+            background-color: #fff; border-bottom: 4px solid var(--accent);
+            padding: 20px 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 900; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .logo i { color: var(--accent); font-size: 1.8rem; }
+
+        .nav-menu { display: flex; gap: 30px; }
+        .nav-menu a { font-size: 0.95rem; font-weight: 600; color: var(--primary); }
+        .nav-menu a:hover { color: var(--accent); }
+        .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.9)), url('https://picsum.photos/seed/library/1920/1080');
+            background-size: cover; background-position: center; padding: 120px 0;
+            color: #fff; text-align: center;
+        }
+        .hero-content { max-width: 900px; margin: 0 auto; }
+        .hero h1 { color: #fff; font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 20px; font-weight: 700; }
+        .hero p { font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9; font-family: var(--font-sans); }
+        
+        /* --- ABOUT SECTION --- */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
+        .about-text p { margin-bottom: 20px; color: var(--text-light); text-align: justify; }
+        .stat-list { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; border-top: 1px solid #ddd; padding-top: 30px; }
+        .stat-item strong { display: block; color: var(--primary); font-family: var(--font-serif); font-size: 1.2rem; }
+        .stat-item span { font-size: 0.9rem; color: var(--text-light); }
+
+        /* --- PRACTICE AREAS (HUGE INFO) --- */
+        .areas-bg { background-color: #fff; }
+        .areas-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px;
+        }
+        .area-card {
+            background: var(--light); padding: 40px; border-left: 4px solid var(--accent);
+            transition: 0.3s;
+        }
+        .area-card:hover { background: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transform: translateY(-5px); }
+        .area-card h3 { font-size: 1.4rem; margin-bottom: 15px; }
+        .area-card p { font-size: 0.95rem; color: var(--text-light); margin-bottom: 20px; }
+        .area-link { color: var(--primary); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- PROCESS (INFO HEAVY) --- */
+        .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 50px; }
+        .step { text-align: center; position: relative; }
+        .step-num {
+            width: 60px; height: 60px; background: var(--primary); color: #fff;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; font-family: var(--font-serif); margin: 0 auto 20px;
+            border: 4px solid #fff; box-shadow: 0 0 0 2px var(--accent);
+        }
+        .step h4 { font-size: 1.2rem; margin-bottom: 10px; }
+        .step p { font-size: 0.9rem; color: var(--text-light); }
+
+        /* --- LEGAL UPDATES / BLOG --- */
+        .updates-bg { background-color: #f1f5f9; }
+        .update-card { background: #fff; padding: 30px; border-radius: 4px; margin-bottom: 30px; border-left: 4px solid var(--primary); }
+        .update-meta { font-size: 0.8rem; color: #888; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+        .update-card h4 { font-size: 1.3rem; margin-bottom: 15px; }
+        .update-card p { font-size: 0.95rem; color: var(--text-light); margin-bottom: 20px; }
+
+        /* --- FAQ (ACCORDION) --- */
+        .faq-container { max-width: 900px; margin: 0 auto; }
+        .faq-item {
+            background: #fff; border: 1px solid #e2e8f0; margin-bottom: 15px;
+            border-radius: 4px; overflow: hidden;
+        }
+        .faq-item summary {
+            padding: 20px 25px; cursor: pointer; font-weight: 700; color: var(--primary);
+            display: flex; justify-content: space-between; align-items: center; list-style: none;
+            font-family: var(--font-serif); font-size: 1.1rem;
+        }
+        .faq-item summary::after { content: '+'; font-size: 1.5rem; color: var(--accent); }
+        .faq-item[open] summary::after { content: '-'; }
+        
+        .faq-item p {
+            padding: 0 25px 25px; color: var(--text-light); border-top: 1px solid #eee;
+            margin-top: 0; padding-top: 20px; font-size: 0.95rem;
+        }
+
+        /* --- CONTACT --- */
+        .contact-wrapper { background: var(--primary); color: #fff; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; }
+        .contact-info h3 { color: #fff; margin-bottom: 30px; font-size: 2rem; }
+        .contact-list li { margin-bottom: 20px; display: flex; align-items: center; gap: 15px; font-size: 1.1rem; }
+        .contact-list i { color: var(--accent); width: 30px; }
+
+        .contact-form input, .contact-form select, .contact-form textarea {
+            width: 100%; padding: 15px; margin-bottom: 20px; border: none;
+            border-radius: 4px; font-family: inherit;
+        }
+        .contact-form button { width: 100%; border: none; }
+
+        /* --- FOOTER --- */
+        footer { background: #0b1120; color: #94a3b8; padding: 80px 0 30px; font-size: 0.9rem; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; margin-bottom: 60px; }
+        .footer-col h4 { color: #fff; font-size: 1.2rem; margin-bottom: 25px; font-family: var(--font-serif); }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col ul li a:hover { color: var(--accent); padding-left: 5px; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .about-grid, .contact-grid, .process-steps { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed; top: 70px; left: 0; width: 100%; background: #fff;
+                flex-direction: column; padding: 30px; gap: 20px;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                transform: translateY(-150%); transition: 0.3s; z-index: 999;
+            }
+            .nav-menu.active { transform: translateY(0); }
+            .mobile-toggle { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo"><i class="fas fa-balance-scale"></i> Justice & Co.</a>
+            <div class="mobile-toggle" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#areas">Practice Areas</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#updates">Legal Updates</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Defending Your Rights,<br>Securing Your Future.</h1>
+                <p>Experienced Legal Consultants in Dhaka specializing in Corporate Law, Property Disputes, and Civil Litigation. We navigate the complexities of the law so you don't have to.</p>
+                <a href="#contact" class="btn btn-primary">Book Consultation</a>
+                <a href="#areas" class="btn btn-outline" style="margin-left: 10px;">Our Expertise</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-padding">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-img">
+                    <img src="https://picsum.photos/seed/lawyerbd/600/700" alt="Lead Lawyer" style="border-radius: 4px; box-shadow: 20px 20px 0 var(--accent);">
+                </div>
+                <div class="about-text">
+                    <div class="section-header" style="text-align: left; margin-bottom: 30px;">
+                        <span>About The Firm</span>
+                        <h2>Dedicated to Justice</h2>
+                    </div>
+                    <p>
+                        Founded in 2010, Justice & Co. has established itself as a premier legal consultancy in Bangladesh. We provide comprehensive legal solutions tailored to both individuals and corporations. Our team consists of highly skilled advocates with years of experience in the Supreme Court and District Courts.
+                    </p>
+                    <p>
+                        We believe in a client-centric approach. Every case is unique, and we dedicate the necessary time and resources to understand the intricacies of your situation. Whether you are dealing with a complex property inheritance issue or setting up a new business, we are here to guide you.
+                    </p>
+                    
+                    <div class="stat-list">
+                        <div class="stat-item">
+                            <strong>15+ Years</strong>
+                            <span>Experience</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>500+ Cases</strong>
+                            <span>Resolved</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>50+ Corporates</strong>
+                            <span>Consulted</span>
+                        </div>
+                        <div class="stat-item">
+                            <strong>100%</strong>
+                            <span>Confidentiality</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Practice Areas (Huge Information) -->
+    <section id="areas" class="section-padding areas-bg">
+        <div class="container">
+            <div class="section-header">
+                <span>Our Expertise</span>
+                <h2>Practice Areas</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="areas-grid">
+                <!-- Area 1 -->
+                <div class="area-card">
+                    <h3>Corporate Law</h3>
+                    <p>We assist local and international companies in incorporating businesses, drafting shareholder agreements, and ensuring compliance with the Bangladesh Securities and Exchange Commission (BSEC) regulations.</p>
+                    <a href="#contact" class="area-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Area 2 -->
+                <div class="area-card">
+                    <h3>Property & Land Disputes</h3>
+                    <p>Navigating the complex land registration system in Bangladesh. We handle title deed verification, mutation services, partition suits, and disputes regarding land acquisition by the government.</p>
+                    <a href="#contact" class="area-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Area 3 -->
+                <div class="area-card">
+                    <h3>Family Law</h3>
+                    <p>Compassionate legal guidance for sensitive matters including divorce, child custody, maintenance, and inheritance issues under both Muslim and Hindu family laws in Bangladesh.</p>
+                    <a href="#contact" class="area-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Area 4 -->
+                <div class="area-card">
+                    <h3>Banking & Finance</h3>
+                    <p>Representing banks and financial institutions in loan recovery suits, arbitration, and drafting loan security documents. We also assist individuals facing default notices.</p>
+                    <a href="#contact" class="area-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Area 5 -->
+                <div class="area-card">
+                    <h3>Criminal Defense</h3>
+                    <p>Strong defense representation for criminal charges ranging from white-collar crimes to more serious offenses. We ensure your rights are protected during police remand and court proceedings.</p>
+                    <a href="#contact" class="area-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Area 6 -->
+                <div class="area-card">
+                    <h3>Taxation & VAT</h3>
+                    <p>Advisory services on income tax compliance, filing returns, and representing clients in tax tribunals. We help businesses optimize tax liabilities within legal frameworks.</p>
+                    <a href="#contact" class="area-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <span>How We Work</span>
+                <h2>Legal Process</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <h4>Consultation</h4>
+                    <p>We meet to discuss your case details, review documents, and provide an initial assessment of the legal standing.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <h4>Strategy</h4>
+                    <p>We develop a robust legal strategy, draft necessary documents, and gather evidence to support your claim or defense.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <h4>Litigation</h4>
+                    <p>We represent you in court, tribunal, or negotiation tables, fighting vigorously to achieve the best possible outcome.</p>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <h4>Resolution</h4>
+                    <p>Final execution of the judgment or settlement agreement, ensuring all legal formalities are completed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Updates / Blog (Info Heavy) -->
+    <section id="updates" class="section-padding updates-bg">
+        <div class="container">
+            <div class="section-header">
+                <span>Stay Informed</span>
+                <h2>Recent Legal Updates</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+                <div class="update-card">
+                    <div class="update-meta">Oct 15, 2023</div>
+                    <h4>New Tax Laws for Fy 2023-24</h4>
+                    <p>A comprehensive breakdown of the new tax slabs introduced by the NBR and how it impacts salaried individuals and business owners.</p>
+                    <a href="#" style="color: var(--primary); font-weight: 700;">Read Full Article &rarr;</a>
+                </div>
+
+                <div class="update-card">
+                    <div class="update-meta">Sep 02, 2023</div>
+                    <h4>Digital Signature Act Amendments</h4>
+                    <p>Understanding the validity of digital contracts and electronic signatures in the context of e-commerce and remote work.</p>
+                    <a href="#" style="color: var(--primary); font-weight: 700;">Read Full Article &rarr;</a>
+                </div>
+
+                <div class="update-card">
+                    <div class="update-meta">Aug 10, 2023</div>
+                    <h4>Land Registration Guide 2023</h4>
+                    <p>Step-by-step guide to registering land in Dhaka, including necessary documents, fees, and avoiding common frauds.</p>
+                    <a href="#" style="color: var(--primary); font-weight: 700;">Read Full Article &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section (Huge Info) -->
+    <section class="section-padding" style="background: #fff;">
+        <div class="container">
+            <div class="section-header">
+                <span>FAQ</span>
+                <h2>Frequently Asked Questions</h2>
+                <div class="divider"></div>
+            </div>
+
+            <div class="faq-container">
+                <details class="faq-item">
+                    <summary>How much do you charge for a consultation?</summary>
+                    <p>Our initial consultation fee is BDT 5,000 for corporate matters and BDT 2,000 for personal matters. This fee is adjusted against our total professional charges if you choose to retain our services.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Do you handle cases outside Dhaka?</summary>
+                    <p>Yes, while our head office is in Dhaka, we represent clients across Bangladesh. We frequently travel to District Courts and High Court benches in Chittagong and Sylhet for specific cases.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What documents are required for property verification?</summary>
+                    <p>Typically, we require the original title deed, certified copies of previous mutation records, latest tax clearance certificate, and a recent survey map (CS/SA/RS). We can assist you in procuring these if missing.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How long does a civil lawsuit take?</summary>
+                    <p>The timeline varies significantly depending on the court's workload and the complexity of the case. Generally, civil suits in District Courts may take 3 to 7 years, while arbitration can be resolved within 1 to 2 years.</p>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can you help with company incorporation?</summary>
+                    <p>Absolutely. We provide end-to-end services for company incorporation, including name clearance from RJSC, drafting MoA and AoA, and obtaining the TIN and BIN certificates.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-wrapper section-padding">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Contact Us</h3>
+                    <p style="margin-bottom: 30px; opacity: 0.8;">We are ready to listen to your legal problems. All communications are strictly confidential.</p>
+                    
+                    <ul class="contact-list">
+                        <li><i class="fas fa-map-marker-alt"></i> House-10, Road-5, Sector-10, Uttara, Dhaka-1230</li>
+                        <li><i class="fas fa-phone-alt"></i> +880 1712-345678, +880 2-8900123</li>
+                        <li><i class="fas fa-envelope"></i> info@justiceco-bd.com</li>
+                        <li><i class="fas fa-gavel"></i> Available: Sat - Thu (9am - 6pm)</li>
+                    </ul>
+                </div>
+
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Your query has been sent. We will contact you shortly.');">
+                    <h4 style="color: #fff; margin-bottom: 20px;">Send a Message</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <input type="text" placeholder="Full Name" required>
+                        <input type="tel" placeholder="Phone Number" required>
+                    </div>
+                    <input type="email" placeholder="Email Address" required>
+                    <select>
+                        <option value="" disabled selected>Select Area of Law</option>
+                        <option>Corporate / Business</option>
+                        <option>Property / Land</option>
+                        <option>Family / Divorce</option>
+                        <option>Criminal Defense</option>
+                        <option>Other</option>
+                    </select>
+                    <textarea rows="5" placeholder="Brief description of your case..." required></textarea>
+                    <button type="submit" class="btn btn-primary">Submit Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="color: #fff; font-size: 1.3rem;"><i class="fas fa-balance-scale"></i> Justice & Co.</a>
+                    <p style="margin-top: 20px; line-height: 1.6;">
+                        Leading law firm in Dhaka providing top-tier legal consultation. We fight for your rights with integrity and dedication.
+                    </p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#areas">Practice Areas</a></li>
+                        <li><a href="#updates">Legal Updates</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Practice Areas</h4>
+                    <ul>
+                        <li><a href="#">Corporate Law</a></li>
+                        <li><a href="#">Property Law</a></li>
+                        <li><a href="#">Criminal Defense</a></li>
+                        <li><a href="#">Taxation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Connect</h4>
+                    <ul style="display: flex; gap: 15px;">
+                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; border-top: 1px solid #1e293b; padding-top: 20px; font-size: 0.85rem;">
+                &copy; 2024 Justice & Co. Law Firm. All Rights Reserved. Designed for Bangladesh.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS for Mobile Menu -->
+    <script>
+        const mobileBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
